@@ -14,7 +14,6 @@ class APIManager(object):
         self.deviceId = deviceId
         self.tickSecond = tickSecond
         self.stop = False
-        self.payload = "{\"battery_status\" : 0}"
         self.headers = {
             'content-type': "application/json",
             'cache-control': "no-cache",
@@ -36,7 +35,7 @@ class APIManager(object):
         while True:
             try:
                 conn = http.client.HTTPConnection(self.apiUrl)
-                conn.request("POST", "/api/device/" + self.deviceId, self.payload, self.headers)
+                conn.request("POST", "/api/device/" + self.deviceId, "", self.headers)
                 data = conn.getresponse().read()
                 data_json = json.loads(data.decode("utf-8"))
 
