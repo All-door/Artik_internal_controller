@@ -40,11 +40,11 @@ class APIManager(object):
                 data_json = json.loads(data.decode("utf-8"))
 
                 print('Password :', data_json['pw1'])
-                print('FaceId :', None)
+                print('FaceId :', data_json['FaceId'])
                 print('Artik Cloud Device Id :', None)
 
                 self.redis.set('Password', data_json["pw1"])
-                self.redis.set('FaceId', None)
+                self.redis.set('FaceId', data_json['FaceId'])
                 self.redis.set('ArtikDeviceId', None)
             except Exception as e:
                 print(e)
