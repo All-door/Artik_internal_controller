@@ -1,9 +1,19 @@
 import cognitive_face as CF
 import json
+import os
 
 class FaceAuth:
     def __init__(self, key):
         CF.Key.set(key);
+
+    def takePicture(self):
+        os.system('fswebcam  -i 0 -d v4l2:/dev/video0  --jpeg 95 --save alldoor.jpg -r 640x480')
+        try:
+            id = self.getFaceId('./alldoor.jpg')
+            os.system('rm -f ./alldoor.jpg')
+        except:
+            return 'None'
+        return id
 
     def getFaceId(self, url):
         return CF.face.detect(url)[0]['faceId']
@@ -15,7 +25,8 @@ class FaceAuth:
         return self.compareFaceByIds(self.getFaceId(url1), self.getFaceId(url2))
 
 if __name__ == "__main__":
-    KEY = 'Microsoft FaceAPI Key'
+    KEY = 'Microsoft Face Api Key'
     face = FaceAuth(KEY)
 
+    print (face.takePicture())
     print (face.compareFaceByImgs('./123.jpg', './456.jpg'))
