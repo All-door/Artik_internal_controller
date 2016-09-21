@@ -1,0 +1,16 @@
+# All-Door setting pages
+
+# Wifi ssid and pw for connect internet
+SSID=SSID
+PASSWORD=password
+
+# In AP-Mode, ssid name and master password
+AP_SSID=All-Door
+AP_PASSWORD=doorlock
+
+# Microsoft face api key for face verify
+FACE_API_KEY=FACEAPIKEY
+
+# All-door api server url;
+API_SERVER_URL=SERVER_URL
+
