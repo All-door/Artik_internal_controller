@@ -32,6 +32,7 @@ def save(ssid, password, deviceId, cloudId, masterPw):
     os.system("wpa_passphrase " + data['SSID'] + " " + data['PASSWORD']+ " > /etc/wpa_supplicant/wpa_supplicant.conf")
 
     data = settingParser.read()
+    exit()
     return template.render(data=data)
 
 
