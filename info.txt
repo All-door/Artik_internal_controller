@@ -1,16 +1,20 @@
 # All-Door setting pages
 
 # Wifi ssid and pw for connect internet
-SSID=SSID
-PASSWORD=password
+SSID=newSSID;
+PASSWORD=password;
 
-# In AP-Mode, ssid name and master password
-AP_SSID=All-Door
-AP_PASSWORD=doorlock
+# For entering Soft AP mode, Master-Password
+MASTER_PW=DEFAULT;
+
+# All-Door Device ID
+ALL_DOOR_ID=DEFAULT;
+
+# Artik Cloud ID
+ARTIK_CLOUD_ID=DEFAULT;
 
 # Microsoft face api key for face verify
-FACE_API_KEY=FACEAPIKEY
+FACE_API_KEY=DEFAULT;
 
-# All-door api server url;
-API_SERVER_URL=SERVER_URL
-
+# All-door api server url
+API_SERVER_URL=DEFAULT;
