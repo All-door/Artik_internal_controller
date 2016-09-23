@@ -33,7 +33,8 @@ class SettingParser:
             key = line.split('=')[0]
             data = line.split('=')[1].split(';')[0]
             if key in info:
-                line = key + '=' + info[key] + '\n'
+                line = key + '=' + info[key] + ';' + '\n'
+                print (line)
                 f.write(line)
 
         f.close()
