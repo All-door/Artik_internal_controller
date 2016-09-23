@@ -6,3 +6,7 @@ if [ -f "/usr/lib/systemd/system/wpa_supplicant.service" ]; then
 fi
 pkill hostapd
 ifconfig wlan0 down
+
+systemctl restart wpa_supplicant
+ifconfig wlan0 up
+dhclient wlan0

@@ -1,22 +1,22 @@
 from flask import Flask, render_template
-from jinja2 import Template
+import jinja2
+import os
 from SettingParser import SettingParser
 
-app = Flask(__name__)
+ASSET_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), './template')
+app = Flask(__name__, template_folder=ASSET_DIR, static_folder=ASSET_DIR)
 settingParser = SettingParser()
 
+templateLoader = jinja2.FileSystemLoader(searchpath="/")
+templateEnv = jinja2.Environment(loader=templateLoader)
+
+template = templateEnv.get_template("/root/Artik_internal_controller/template/index.html")
 
 @app.route('/')
 def loadPage():
     data = settingParser.read()
-
-    ssid = data['SSID']
-    pw = data['PASSWORD']
-    deviceId = data['DEVICE_ID']
-    cloudId = data['CLOUD_ID']
-    ap_pw = data['MASTER_PW']
-    
-    return render_template('./softAP/index.html', data)
+    print(data['SSID'])    
+    return template.render(data=data)
 
 
 @app.route('/save/<ssid>/<password>/<deviceId>/<cloudId>/<masterPw>')
@@ -24,11 +24,15 @@ def save(ssid, password, deviceId, cloudId, masterPw):
     data = settingParser.read()
     data['SSID'] = ssid
     data['PASSWORD'] = password
-    data['DEVICE_ID'] = deviceId
-    data['CLOUD_ID'] = cloudId
+    data['ALL_DOOR_ID'] = deviceId
+    data['ARTIK_CLOUD_ID'] = cloudId
     data['MASTER_PW'] = masterPw
     settingParser.write(data)
-    return settingParser.read()['SSID']
+
+    os.system("wpa_passphrase " + data['SSID'] + " " + data['PASSWORD']+ " > /etc/wpa_supplicant/wpa_supplicant.conf")
+
+    data = settingParser.read()
+    return template.render(data=data)
 
 
 if __name__ == '__main__':
