@@ -36,7 +36,7 @@ class CloudManager(object):
 if __name__ == '__main__':
     redisClient = redis.StrictRedis(host='localhost', port=6379, db=0)
     deviceId = redisClient.get('ArtikDeviceId').decode('utf-8')
-    accessToken = redisClient.get('ArtikDeviceAccessToken').decode('utf-8')
+    accessToken = redisClient.get('ArtikDeviceAccessToekn').decode('utf-8')
     CloudManager(
         deviceId = deviceId,
         accessToken = accessToken
