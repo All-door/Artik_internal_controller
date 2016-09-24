@@ -5,52 +5,58 @@ class Sensor:
 	def bin2dec(string_num):
 		return str(int(string_num, 2))
 
-	def setup(pin_num):
+	data = []
+	pinNum = 4
+	
+	def setup(pinNum):
 		pinctl = open("/sys/class/gpio/export", "wb", 0)
 		try:
-			pinctl. write(str(pin_num))
+			pinctl. write(str(pinNum))
 		except:
-			print "Pin " , str(pin_num), " has been exported"
+			print ("Pin " , str(pinNum), " has been exported")
 		pinctl.close()
 
-	def set_input(pin_num)	
-		filename = '/sys/class/gpio/gpio%d/direction' % pin_num
+	setup(pinNum)
+	
+	def set_input(pinNum):	
+		filename = '/sys/class/gpio/gpio%d/direction' % pinNum
 		pinctldir = open(filename, "wb", 0)
 		try:
 			pinctldir.write("out")
 		except:
-			print "Failed to set pin direction"
+			print ("Failed to set pin direction")
 		pinctldir.close()
 	
-	def exit_gpio(pin_num):
-			pinctl = open("/sys/class/gpio/unexport", "wb", 0)
-		try:
-			pinctl. write(str(pin_num))
-		except:
-			print "Pin " , str(pin_num), " has been exported"
-		pinctl.close()
-	
-	data = []
-	pinNum = 4
-
-	setup(pinNum)
 	set_input(pinNum)
 
-	filename = '/sys/class/gpio/gpio%d/value' % pin_num
+	filename = '/sys/class/gpio/gpio%d/value' % pinNum
 	pin = open(filename, "wb", 0)
 
+	def exit_gpio(pinNum):
+		pinctl = open("/sys/class/gpio/unexport", "wb", 0)
+		try:
+			pinctl.write(str(pinNum))
+		except:
+			print ("Pin " , str(pinNum), " has been exported")
+		pinctl.close()
+	
+	
 	pin.write(str(1))
 	time.sleep(0.025)
 
 	pin.write(str(0))
 	time.sleep(0.02)
 
-
-	pin = open(filename, "rb", 0)
-
+	pin.close()
+	exit_gpio()
+	
 	for i in range(0,500):
+		pin = open(filename, "rb", 0)
 		data.append(pin.read())
+		pin.close()
 
+	exit_gpio()
+	
 	bit_count = 0
 	tmp = 0
 	count = 0
@@ -86,7 +92,7 @@ class Sensor:
 					TemperatureBit = TemperatureBit + "0"
 
 	except:
-		print "ERR_RANGE"
+		print ("ERR_RANGE")
 		exit(0)
 
 	try:
@@ -106,18 +112,18 @@ class Sensor:
 			else:
 				crc = crc + "0"
 	except:
-		print "ERR_RANGE"
+		print ("ERR_RANGE")
 		exit(0)
 
 	Humidity = bin2dec(HumidityBit)
 	Temperature = bin2dec(TemperatureBit)
-	def getTemperature:
+	def getTemperature():
 		if int(Humidity) + int(Temperature) - int(bin2dec(crc)) == 0:
 			return Temperature
 		else:
 			return "ERR_CRC"
 			
-	def getHumidity:
+	def getHumidity():
 		if int(Humidity) + int(Temperature) - int(bin2dec(crc)) == 0:
 			return Humidity
 		else:
