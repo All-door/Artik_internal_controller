@@ -1,7 +1,7 @@
 import time
 import sys
 
-class sensor:
+class Sensor:
 	def bin2dec(string_num):
 		return str(int(string_num, 2))
 
@@ -111,9 +111,14 @@ class sensor:
 
 	Humidity = bin2dec(HumidityBit)
 	Temperature = bin2dec(TemperatureBit)
-
-	if int(Humidity) + int(Temperature) - int(bin2dec(crc)) == 0:
-		print Humidity
-		print Temperature
-	else:
-		print "ERR_CRC"
+	def getTemperature:
+		if int(Humidity) + int(Temperature) - int(bin2dec(crc)) == 0:
+			return Temperature
+		else:
+			return "ERR_CRC"
+			
+	def getHumidity:
+		if int(Humidity) + int(Temperature) - int(bin2dec(crc)) == 0:
+			return Humidity
+		else:
+			return "ERR_CRC"
