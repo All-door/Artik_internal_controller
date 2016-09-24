@@ -42,12 +42,12 @@ class APIManager(object):
                 print('Password :', data_json['pw1'])
                 print('FaceId :', data_json['FaceId'])
                 print('Artik Cloud Device Id :', data_json['ArtikDeviceID'])
-                print('Artik Cloud Device Access Token :', None)
+                print('Artik Cloud Device Access Token :', data_json['ArtikDeviceAccessToken'])
 
                 self.redis.set('Password', data_json["pw1"])
                 self.redis.set('FaceId', data_json['FaceId'])
-                self.redis.set('ArtikDeviceId', None)
-                self.redis.set('ArtikDeviceAccessToekn', None)
+                self.redis.set('ArtikDeviceId', data_json['ArtikDeviceID'])
+                self.redis.set('ArtikDeviceAccessToekn', data_json['ArtikDeviceAccessToken'])
             except Exception as e:
                 print(e)
             time.sleep(self.tickSecond)
