@@ -6,7 +6,7 @@ import redis
 
 class CloudManager(object):
     ARTIK_CLOUD_MESSAGE_URL = 'api.artik.cloud'
-    def __init__(self, deviceId, accessToken, tickSecond=10):
+    def __init__(self, deviceId, accessToken, tickSecond=60 * 10):
         super(CloudManager, self).__init__()
         self.deviceId = deviceId
         self.accessToken = accessToken
