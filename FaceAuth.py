@@ -7,7 +7,7 @@ class FaceAuth:
         CF.Key.set(key);
 
     def takePicture(self):
-        os.system('fswebcam  -i 0 -d v4l2:/dev/video0  --jpeg 95 --save alldoor.jpg -r 640x480')
+        os.system('fswebcam  -i 0 -d v4l2:/dev/video0  --jpeg 95 --save alldoor.jpg -r 640x480 -S 30')
         try:
             id = self.getFaceId('./alldoor.jpg')
             os.system('rm -f ./alldoor.jpg')
