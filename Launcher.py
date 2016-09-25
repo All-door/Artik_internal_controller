@@ -5,10 +5,10 @@ from SettingParser import SettingParser
 import os
 import time
 
-redisClient = RedisClient()
-faceAuth = FaceAuth('Microsoft Face API Key')
-keypad = Keypad()
 settingParser = SettingParser()
+redisClient = RedisClient()
+faceAuth = FaceAuth(settingParser.read()['FACE_API_KEY'])
+keypad = Keypad()
 
 while True:
     time.sleep(2)
@@ -43,7 +43,7 @@ while True:
             print ('Open Door')
         elif localPassword == settingParser.read()['MASTER_PW']:
             keypad.lcdWrite("Admin", "Welcome")
-            print ('Open Door') 
+            print ('Open Door')
         elif localPassword == settingParser.read()['MASTER_PW'] + '*':
             keypad.lcdWrite("Setting Mode", "Wait.....")
             os.system("./softAP/softApTurnOn.sh")
