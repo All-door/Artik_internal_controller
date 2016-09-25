@@ -2,6 +2,7 @@ import json
 import http.client
 import redis
 import time
+from SettingParser import SettingParser
 
 class APIManager(object):
     """All-Door for Artik API 통신관련 라이브러리"""
@@ -53,4 +54,5 @@ class APIManager(object):
             time.sleep(self.tickSecond)
 
 if __name__ == '__main__':
-    APIManager().routine()
+    apiUrl = SettingParser().read()['API_SERVER_URL']
+    APIManager(apiUrl=apiUrl).routine()
