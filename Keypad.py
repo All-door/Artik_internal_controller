@@ -2,8 +2,7 @@ import os
 import serial
 
 class Keypad:
-    dev = '/dev/ttyACM0'
-    #dev = 'dev/ttyACM1'
+    dev = '/dev/ttyUSB0'
     baud = 9600
     def __init__(self):
         self.serial = serial.Serial(self.dev, self.baud)
