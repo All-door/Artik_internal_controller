@@ -2,19 +2,23 @@
 <html >
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>All-Door Setting Page</title>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-    
+
     <link rel="stylesheet" href="/template/css/normalize.css">
-    <link rel="stylesheet" href="/template/css/style.css">  
+    <link rel="stylesheet" href="/template/css/style.css">
   </head>
 
   <body>
-    <div class="form">    
+    <div class="main-logo">
+      <img src="/template/images/alldoor.png"/>
+    </div>
+    <div class="form">
       <div class="tab-content">
-        <div id="signup">   
+        <div id="signup">
           <h1>Wifi connect settings</h1>
- 
           <div class="top-row">
             <div class="field-wrap">
               <label class="active highlight">
@@ -22,7 +26,6 @@
               </label>
               <input id='ssid' type="text"  value="{{data['SSID']}}"  required autocomplete="off" />
             </div>
-        
             <div class="field-wrap">
               <label class="active highlight">
                 password<span class="req"></span>
@@ -31,37 +34,35 @@
             </div>
           </div>
         </div>
-        
-          <h1>Device Settings</h1>         
-            <div class="field-wrap">
-            <label class="active highlight">
-              All-Door Device Id<span class="req"></span>
-            </label>
-            <input id='all_door_id' type="text" value="{{data['ALL_DOOR_ID']}}" required autocomplete="off" />
-          </div>
-          
-          <div class="field-wrap">
-            <label class="active highlight">
-              Artik Cloud Id<span class="req"></span>
-            </label>
-            <input id='artik_cloud_id' type="text" value="{{data['ARTIK_CLOUD_ID']}}" required autocomplete="off"/>
-          </div>
-          
-          <div class="field-wrap">
-            <label class="active highlight">
-              Master Password<span class="req"></span>
-            </label>
-            <input id='master_pw' type="password"required autocomplete="off" value="{{data['MASTER_PW']}}"/>
-          </div>
-       
-          <button id='save' class="button button-block"/>SAVE</button>
-                
+        <h1>Device Settings</h1>
+        <div class="field-wrap">
+          <label class="active highlight">
+            All-Door Device Id<span class="req"></span>
+          </label>
+          <input id='all_door_id' type="text" value="{{data['ALL_DOOR_ID']}}" required autocomplete="off" />
+        </div>
+        <div class="field-wrap">
+          <label class="active highlight">
+            Artik Cloud Id<span class="req"></span>
+          </label>
+          <input id='artik_cloud_id' type="text" value="{{data['ARTIK_CLOUD_ID']}}" required autocomplete="off"/>
+        </div>
+        <div class="field-wrap">
+          <label class="active highlight">
+            Master Password<span class="req"></span>
+          </label>
+          <input id='master_pw' type="password"required autocomplete="off" value="{{data['MASTER_PW']}}"/>
+        </div>
+        <button id='save' class="button button-block"/>SAVE</button>
       </div>
-      
-</div>
+    </div>
+    <div class="support-logo">
+      <div class="logo">
+        <img src="/template/images/samsung.png"/>
+        <img src="/template/images/artik.png"/>
+      </div>
+    </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-        <script src="/template/js/index.js"></script>   
-    
+    <script src="/template/js/index.js"></script>
   </body>
 </html>

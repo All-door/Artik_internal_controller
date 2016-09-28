@@ -24,8 +24,8 @@ a:hover {
 .form {
   background: rgba(19, 35, 47, 0.9);
   padding: 40px;
-  max-width: 600px;
-  margin: 40px auto;
+  max-width: 800px;
+  margin: 10px auto;
   border-radius: 4px;
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
@@ -175,4 +175,35 @@ textarea {
 .forgot {
   margin-top: -20px;
   text-align: right;
+}
+
+.main-logo img {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+.support-logo .logo {
+  width: 75%;
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .main-logo img {
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .support-logo .logo {
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.logo img {
+  width: 50%;
+  float: left;
 }
