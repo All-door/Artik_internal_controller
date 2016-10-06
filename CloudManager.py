@@ -23,7 +23,7 @@ class CloudManager(object):
         while True:
             try:
                 conn = http.client.HTTPSConnection(self.ARTIK_CLOUD_MESSAGE_URL)
-                payload['data'] = '{"Temperature" : '+ str(randrange(1,30)) + ',"Humidity" : ' + str(randrange(0,100)) + ',"Hall" : ' + choice(['true','false']) + '}'
+                payload['data'] = '{"CO2" : '+ str(randrange(1,30)) + ',"SMOKE" : ' + str(randrange(0,100))+ ',"LPG" : ' + str(randrange(0,100)) + ',"Hall" : ' + choice(['true','false']) + '}'
 
                 conn.request("POST", "/v1.1/messages", json.dumps(payload), headers)
                 res = conn.getresponse()
