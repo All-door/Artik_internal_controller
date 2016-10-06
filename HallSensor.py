@@ -6,7 +6,6 @@ class HallSensor:
         self.pinNum = pinNum
 
     def getOpened(self):
-        self.setup()
         filename = '/sys/devices/12d10000.adc/iio:device0/in_voltage%d_raw' % self.pinNum
         pin = open(filename, "rb", 0)
 

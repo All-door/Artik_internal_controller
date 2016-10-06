@@ -12,6 +12,10 @@ class Keypad:
         sendMsg = firstString + ':' + secondString + '\n'
         self.serial.write(sendMsg.encode())
 
+    def openDoor(self):
+        sendMsg = "Open" + ':' + "Door" + '\n'
+        self.serial.write(sendMsg.encode())
+
     def read(self):
         while True:
             ch = self.serial.read().decode("utf-8")
