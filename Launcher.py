@@ -29,6 +29,8 @@ while True:
         result = faceAuth.compareFaceByIds(remoteFaceId, localFaceId)
         if result == True:
             # Open door
+            keypad.openDoor()
+            time.sleep(1)
             keypad.lcdWrite("Face Auth", "Welcome!")
             print ('Open Door')
         elif result == False:
@@ -38,10 +40,13 @@ while True:
     else:
         remotePassword = redisClient.getPassword()
         if remotePassword == localPassword:
-            # Open door
+            keypad.openDoor()
+            time.sleep(1)
             keypad.lcdWrite("Password Auth", "Welcome!")
             print ('Open Door')
         elif localPassword == settingParser.read()['MASTER_PW']:
+            keypad.openDoor()
+            time.sleep(1)
             keypad.lcdWrite("Admin", "Welcome")
             print ('Open Door')
         elif localPassword == settingParser.read()['MASTER_PW'] + '*':

@@ -58,5 +58,5 @@ class MqSensor:
         return lpg, co, smoke
 
 if __name__=="__main__":
-    sensor = MqSensor(0)
+    sensor = MqSensor(2)
     print(sensor.getLpgCoSmoke())

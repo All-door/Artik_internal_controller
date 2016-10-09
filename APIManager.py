@@ -31,6 +31,8 @@ class APIManager(object):
 
     def initRedis(self):
         self.redis = redis.StrictRedis(host=self.redisUrl, port=self.redisPort, db=0)
+        self.redis.set('FaceId', 'None')
+        self.redis.set('Password', 'None')
 
     def routine(self):
         while True:
