@@ -1,5 +1,6 @@
 import os
 import serial
+from Buzzer import Buzzer
 
 class Keypad:
     dev = '/dev/ttyUSB0'
@@ -7,6 +8,7 @@ class Keypad:
     def __init__(self):
         self.serial = serial.Serial(self.dev, self.baud)
         self.serial.flush()
+        self.buzzer = Buzzer()
 
     def lcdWrite(self, firstString, secondString):
         sendMsg = firstString + ':' + secondString + '\n'
@@ -27,6 +29,7 @@ class Keypad:
                 pw = list();
                 while True:
                     ch = self.serial.read().decode("utf-8")
+                    self.buzzer.beep()
                     print (ch)
                     pwChar = pwChar + '*'
                     self.lcdWrite("PASSWORD", pwChar)

@@ -2,6 +2,7 @@ from RedisClient import RedisClient
 from Keypad import Keypad
 from FaceAuth import FaceAuth
 from SettingParser import SettingParser
+from Buzzer import Buzzer
 import os
 import time
 
@@ -9,6 +10,7 @@ settingParser = SettingParser()
 redisClient = RedisClient()
 faceAuth = FaceAuth(settingParser.read()['FACE_API_KEY'])
 keypad = Keypad()
+buzzer = Buzzer()
 
 while True:
     time.sleep(2)
@@ -21,7 +23,9 @@ while True:
         if remoteFaceId == 'None':
             keypad.lcdWrite("Face Auth", "Not have image")
             continue
+        buzzer.beepPicture()
         localFaceId = faceAuth.takePicture()
+        buzzer.off()
         if localFaceId == 'None':
             keypad.lcdWrite("Face Auth", "try again..")
             print ('Cannot find face')
@@ -30,11 +34,13 @@ while True:
         if result == True:
             # Open door
             keypad.openDoor()
+            buzzer.beepOpen()
             time.sleep(1)
             keypad.lcdWrite("Face Auth", "Welcome!")
             print ('Open Door')
         elif result == False:
             # Not You
+            buzzer.beepErr()
             keypad.lcdWrite("Face Auth", "try again..")
             print ('Face Auth Error')
     else:
@@ -44,6 +50,7 @@ while True:
             time.sleep(1)
             keypad.lcdWrite("Password Auth", "Welcome!")
             print ('Open Door')
+            buzzer.beepOpen()
         elif localPassword == settingParser.read()['MASTER_PW']:
             keypad.openDoor()
             time.sleep(1)
@@ -59,4 +66,5 @@ while True:
         else:
             # Not You
             print ('Password Auth Error')
+            buzzer.beepErr()
             keypad.lcdWrite("Password Auth", "Fail! try again")
